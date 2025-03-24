@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="searchproducts">
+    <div class="search-container">
+      <input type="text" placeholder="Search for products...">
+      <button>Search</button>
+      <select class="top-searches-dropdown">
+        <option value="0">Categories...</option>
+        <option value="phones-accessories">Phones & accessories</option>
+        <option value="clothes">Clothes</option>
+        <option value="handbags">Handbags</option>
+        <option value="shoes">Shoes</option>
+      </select>
+    </div>
+  </div>
+  <div class="itemssection">
+    <div class="card" *ngFor="let product of products; let i = index">
+      <img [src]="product.product_image" alt="">
+      <p>{{ product.product_name}}</p>
+      <p>KSh {{ product.product_price }}</p>
+      <button class="view-button" (click)="navitagateToProduct(i)">View</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+CREATE TABLE Users(user_id VARCHAR(255) PRIMARY KEY NOT NULL, username VARCHAR(255) NOT NULL, email VARCHAR(100) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL, role VARCHAR(50) DEFAULT 'user')
+
+
+SELECT * FROM Users
+
+
+UPDATE Users
+SET role = 'admin'
+WHERE user_id = 'a35e2b99-ffb7-4c3d-9446-7511b9a546e8'

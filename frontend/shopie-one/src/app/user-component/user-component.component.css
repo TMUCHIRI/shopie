@@ -1,0 +1,194 @@
+.container {
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wholenavbar {
+  display: flex;
+  align-items: center;
+  height: 15vh;
+  width: 92vw;
+  background-color: white;
+  margin-top: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wholenavbar .shoppingicon img {
+  border-radius: 5px;
+}
+
+a {
+  color: rgb(20, 24, 88);
+  font-size: 20px;
+  margin-left: 30px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(165, 165, 165);
+}
+
+.shoppingicon img {
+  margin-left: 20px;
+  width: 100px;
+  height: 100px;
+}
+
+.shoppingicon p {
+  font-size: 20px;
+  color: rgb(20, 24, 88);
+}
+
+.shoppingicon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 15vh;
+  width: 20vw;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.searchproducts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  background-color: rgb(221, 221, 221);
+  width: 92vw;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.searchproducts input {
+  width: calc(100% - 130px);
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.searchproducts button {
+  height: 40px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(20, 24, 88);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.searchproducts button:hover {
+  background-color: rgb(139, 127, 127);
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px; /* Add gap between elements */
+}
+
+.top-searches-dropdown {
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.top-searches {
+  margin-top: 10px;
+  color: rgb(20, 24, 88);
+  font-size: 16px;
+}
+
+.itemssection {
+  display: flex;
+  background-color: #fff;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+  height: auto;
+  width: 92vw;
+  margin-top: 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.itemssection > p {
+  align-self: flex-start;
+  margin: 0;
+}
+.itemssection > hr {
+  width: 100%; /* Make horizontal line full width */
+  margin: 10px 0; /* Add margin to separate elements */
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  word-wrap: break-word;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  transform: scale(1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card img {
+  width: 250px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Card button styles */
+.view-button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(20, 24, 88);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.view-button:hover {
+  background-color: rgb(139, 127, 127);
+  transform: scale(1.05);
+}
+
+.price {
+  color: red;
+  font-weight: bold;
+}

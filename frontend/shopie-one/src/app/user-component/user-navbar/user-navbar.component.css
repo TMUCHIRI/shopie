@@ -1,0 +1,140 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+}
+
+.wholenavbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.shoppingicon {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.shoppingicon img {
+  width: 50px;
+  height: auto;
+}
+
+.shoppingicon p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+.badge {
+  background-color: #ff4757;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: relative;
+  top: -10px;
+  right: 5px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+}
+
+.sub-menu-wrap {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 250px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.sub-menu-wrap.active {
+  max-height: 400px;
+}
+
+.sub-menu {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.user-info h4 {
+  color: #333;
+  font-size: 18px;
+}
+
+.sub-menu hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 10px 0;
+}
+
+.sub-menu-link {
+  display: flex;
+  align-items: center;
+  color: #333;
+  padding: 10px 0;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sub-menu-link:hover {
+  background-color: #f0f2f5;
+}
+
+.sub-menu-link i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.sub-menu-link p {
+  flex-grow: 1;
+}
+
+.sub-menu-link span {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}

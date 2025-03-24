@@ -1,0 +1,104 @@
+<header class="header">
+  <div class="container flex">
+      <div class="left-nav">
+          <a routerLink="/" class="logo">Shopie One</a>
+          <nav class="nav">
+              <a routerLink="/" class="nav-btn">Home</a>
+              <div class="dropdown">
+                  <button class="nav-btn dropbtn">Categories</button>
+                  <div class="dropdown-content">
+                    <a (click)="filterProductsByCategory('electronics')">Electronics</a>
+                    <a (click)="filterProductsByCategory('clothing')">Clothing</a>
+                    <a (click)="filterProductsByCategory('home-and-garden')">Home & Garden</a>
+                    <a (click)="filterProductsByCategory('sports-and-outdoors')">Sports & Outdoors</a>
+                    <a (click)="filterProductsByCategory('')">All Categories</a>
+                  </div>
+              </div>
+              <a (click)="scrollToAbout()" class="nav-btn">About</a>
+          </nav>
+      </div>
+      <div class="user-actions">
+        <button class="search-btn" (click)="toggleSearch()"><i class="fas fa-search"></i></button>
+        <input *ngIf="isSearchVisible" type="text" [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()" 
+               placeholder="Search by description" class="search-input">
+        <button class="icon-btn" routerLink="/register"><i class="fas fa-user"></i></button>
+        <app-cart></app-cart>
+      </div>
+  </div>
+</header>
+
+<section class="hero bg-gradient">
+  <div class="container">
+      <h1>Welcome to Shopie One</h1>
+      <p>Discover amazing products at unbeatable prices!</p>
+      <a routerLink="login" class="btn">Shop Now</a>
+  </div>
+</section>
+
+<section class="featured-products">
+    <div class="container">
+        <h2>Featured Products</h2>
+        <div class="products-grid">
+            <div *ngFor="let product of filteredProducts" class="product-item"> <!-- Changed to filteredProducts -->
+                <img [src]="product.product_image" [alt]="product.product_name" class="product-image">
+                <h3>{{ product.product_name }}</h3>
+                <p>{{ product.product_description }}</p>
+                <p>Price: {{ product.product_price }}</p>
+                <p>Category: {{ product.product_category }}</p>
+                <button (click)="handleAddToBasket(product.product_id)">Add to Basket</button>
+            </div>
+            <p *ngIf="filteredProducts.length === 0">No products found matching your search.</p>
+        </div>
+    </div>
+  </section>
+
+<section class="newsletter bg-gradient">
+  <div class="container">
+      <h2>Subscribe to Our Newsletter</h2>
+      <p>Get the latest updates on new products and special offers!</p>
+      <form id="newsletter-form" (ngSubmit)="submitNewsletter($event)">
+          <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+      </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3>About Us</h3>
+              <p>Shopie One is your one-stop shop for all your e-commerce needs. We offer a wide range of products at competitive prices.</p>
+          </div>
+          <div class="footer-section" id="about-us">
+              <h3>Quick Links</h3>
+              <ul>
+                  <li><a routerLink="/">Home</a></li>
+                  <li><a routerLink="/categories">Categories</a></li>
+                  <li><a routerLink="/contact">Contact</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Customer Service</h3>
+              <ul>
+                  <li><a routerLink="/faq">FAQ</a></li>
+                  <li><a routerLink="/shipping">Shipping</a></li>
+                  <li><a routerLink="/returns">Returns</a></li>
+                  <li><a routerLink="/privacy">Privacy Policy</a></li>
+                  <li><a routerLink="/terms">Terms of Service</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Connect With Us</h3>
+              <div class="social-links">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>© 2025 Shopie One. All rights reserved.</p>
+      </div>
+  </div>
+</footer>

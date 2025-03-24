@@ -1,0 +1,105 @@
+body {
+  height: auto;
+  width: 100vw;
+  background-color: rgb(221, 221, 221);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.usercart {
+  display: flex;
+  width: 92vw;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  align-items: flex-end;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.image img {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 0;
+}
+
+.description {
+  flex: 2;
+  padding: 20px;
+}
+
+.description2 {
+  margin-bottom: 10px;
+}
+
+.rating {
+  margin-bottom: 10px;
+}
+
+.star {
+  color: gold;
+  font-size: 20px;
+}
+
+.price {
+  margin-bottom: 10px;
+  color: red;
+  font-weight: bold;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quantity button {
+  background-color: rgb(20, 24, 88);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+
+.quantity button:hover {
+  background-color: rgb(106, 129, 255);
+}
+
+.quantity span {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+button {
+  background-color: rgb(20, 24, 88);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+button:hover {
+  background-color: rgb(106, 129, 255);
+}

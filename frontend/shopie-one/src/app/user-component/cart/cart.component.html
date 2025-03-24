@@ -1,0 +1,17 @@
+<div class="cart-container">
+    <button class="icon-btn" (click)="toggleCart()">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count" *ngIf="basketItems.length > 0">{{ basketItems.length }}</span>
+    </button>
+    <div class="cart-dropdown" *ngIf="isCartVisible">
+      <h3>Your Cart</h3>
+      <div *ngIf="basketItems.length === 0">Your cart is empty.</div>
+      <ul>
+        <li *ngFor="let item of basketItems">
+          <img [src]="item.product_image" [alt]="item.product_name" class="cart-item-image">
+          <span>{{ item.product_name }} - {{ item.product_price }}</span>
+        </li>
+      </ul>
+      <button class="view-cart-btn" (click)="navigateToCartPage()" *ngIf="basketItems.length > 0">View Cart</button>
+    </div>
+  </div>

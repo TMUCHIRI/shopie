@@ -1,0 +1,39 @@
+###CREATE PRODUCT
+POST http://localhost:5700/products/create
+Content-Type: application/json
+
+{
+    "product_name": "Nike AirForce 1 shoes",
+    "product_description": "size 41, black, leather",
+    "product_image": "gshjzlvmpmzse;bmd;zm/",
+    "product_price": "5000",
+    "product_quantity": "5",
+    "product_category": "Clothing"
+}
+
+
+###VIEW ALL PRODUCTS
+GET http://localhost:5700/products/all-products
+Content-Type: application/json
+
+
+###VIEW ONE PRODUCT
+GET http://localhost:5700/products/5a7e2016-df7a-44e9-8f42-a47f49b4bab3
+
+
+
+###UPDATE PRODUCT
+PUT http://localhost:5700/products/05cc4ff3-0440-4391-9cac-33973afbd44e
+Content-Type: application/json
+
+{
+    "product_name": "Nike AirForce 1 shoes",
+    "product_description": "size 41, black, leather",
+    "product_image": "qwertyuiopasdfghjklzxcvbnm",
+    "product_price": "1600",
+    "product_quantity": "10",
+    "product_category": "Clothing"
+}
+
+###DELETE PRODUCT
+DELETE http://localhost:5700/products/96693015-c1ef-4615-8fe3-5cf8c8868c1c

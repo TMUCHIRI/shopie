@@ -1,0 +1,52 @@
+###REGISTER USER
+POST http://localhost:5700/users/register
+Content-Type: application/json
+
+{
+    "username": "Admin",
+    "email": "admin@example.com",
+    "password": "adminpass123"
+}
+
+###LOGIN USER
+POST http://localhost:5700/users/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "adminpass123"
+}
+
+
+
+###FETCH ALL USERS
+GET http://localhost:5700/users/fetch-all-users
+Content-Type: application/json
+
+
+
+### FETCH SINGLE USER
+GET http://localhost:5700/users/a8d96a5e-1d87-4611-8245-bdc24b7a6bb5
+Content-Type: application/json
+
+
+###SWITCH ROLES
+PUT http://localhost:5700/users/switch-role
+Content-Type: application/json
+
+{
+    "user_id":"1fa3b989-9e22-4133-a3c1-ea2aed142ff4"
+}
+
+
+###CHANGE USER PASSWORD
+PUT http://localhost:5700/users/jimmy@example.com
+Content-Type: application/json
+
+{
+    "password": "12345678"
+}
+
+
+###DELETE USER
+DELETE http://localhost:5700/users/delete/48bb7589-dcd6-49e8-a19b-8cd84634ebbe
