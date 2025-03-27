@@ -1,30 +1,31 @@
+// cart.service.ts
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { OrderDetails } from '../interfaces/order';
+import { ProductDetails } from '../interfaces/products';
 import { BehaviorSubject } from 'rxjs';
-
-interface CartItem {
-  product: OrderDetails;
-  quantity: number;
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private localStorageKey = 'cartItems';
-  private items: CartItem[] = [];
+  private items: { product: ProductDetails; quantity: number }[] = [];
   private isBrowser: boolean;
-
-  // BehaviorSubject to track the item count
-  private itemCountSubject: BehaviorSubject<number> =
-    new BehaviorSubject<number>(0);
+  private itemCountSubject = new BehaviorSubject<number>(0);
   itemCount$ = this.itemCountSubject.asObservable();
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {
       this.loadCart();
+    }
+  }
+
+  private loadCart() {
+    if (this.isBrowser) {
+      const storedItems = localStorage.getItem(this.localStorageKey);
+      this.items = storedItems ? JSON.parse(storedItems) : [];
+      this.itemCountSubject.next(this.getTotalItemCount());
     }
   }
 
@@ -35,65 +36,40 @@ export class CartService {
     }
   }
 
-  private loadCart() {
-    if (this.isBrowser) {
-      const storedItems = localStorage.getItem(this.localStorageKey);
-      if (storedItems) {
-        this.items = JSON.parse(storedItems);
-        this.itemCountSubject.next(this.getTotalItemCount());
-      }
-    }
-  }
-
-  addToCart(product: OrderDetails) {
-    const existingItem = this.items.find(
-      (item) => item.product.product_id === product.product_id
-    );
-
+  addToCart(product: ProductDetails) {
+    const existingItem = this.items.find((item) => item.product.product_id === product.product_id);
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
       this.items.push({ product, quantity: 1 });
     }
-
     this.saveCart();
   }
 
-  removeItem(product_id: string) {
-    if (this.isBrowser) {
-      const index = this.items.findIndex(
-        (item) => item.product.product_id === product_id
-      );
-      if (index !== -1) {
-        this.items.splice(index, 1);
-        this.saveCart();
-      }
-    }
+  getItems() {
+    return this.items;
   }
 
-  increaseQuantity(product_id: string) {
-    const existingItem = this.items.find(
-      (item) => item.product.product_id === product_id
-    );
+  removeItem(productId: string) {
+    this.items = this.items.filter((item) => item.product.product_id !== productId);
+    this.saveCart();
+  }
 
-    if (existingItem) {
-      existingItem.quantity += 1;
+  increaseQuantity(productId: string) {
+    const item = this.items.find((item) => item.product.product_id === productId);
+    if (item) {
+      item.quantity += 1;
       this.saveCart();
     }
   }
 
-  decreaseQuantity(product_id: string) {
-    const existingItem = this.items.find(
-      (item) => item.product.product_id === product_id
-    );
-
-    if (existingItem) {
-      existingItem.quantity -= 1;
-      if (existingItem.quantity === 0) {
-        this.removeItem(product_id);
-      } else {
-        this.saveCart();
-      }
+  decreaseQuantity(productId: string) {
+    const item = this.items.find((item) => item.product.product_id === productId);
+    if (item && item.quantity > 1) {
+      item.quantity -= 1;
+      this.saveCart();
+    } else if (item && item.quantity === 1) {
+      this.removeItem(productId);
     }
   }
 
@@ -101,14 +77,8 @@ export class CartService {
     return this.items.reduce((total, item) => total + item.quantity, 0);
   }
 
-  getItems() {
-    return this.items;
-  }
-
   clearCart() {
-    if (this.isBrowser) {
-      this.items = [];
-      this.saveCart();
-    }
+    this.items = [];
+    this.saveCart();
   }
 }

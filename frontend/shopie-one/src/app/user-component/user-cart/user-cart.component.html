@@ -13,8 +13,9 @@
         <span class="star">&#9733;</span>
       </div>
       <div class="price">{{product.product_price}}</div>
-      <div class="quantity">Quantity: <button>-</button> <span>1</span> <button>+</button></div>
-
+      <div class="quantity">
+        Quantity: <button (click)="decreaseQuantity()">-</button> <span>{{ quantity }}</span> <button (click)="increaseQuantity()">+</button>
+      </div>
       <button (click)="addToCart()">Add to cart</button>
     </div>
   </div>

@@ -8,9 +8,9 @@
       <div *ngIf="basketItems.length === 0">Your cart is empty.</div>
       <ul>
         <li *ngFor="let item of basketItems">
-          <img [src]="item.product_image" [alt]="item.product_name" class="cart-item-image">
-          <span>{{ item.product_name }} - {{ item.product_price }}</span>
-        </li>
+          <img [src]="item.product.product_image" [alt]="item.product.product_name" class="cart-item-image">
+          <span>{{ item.product.product_name }} - {{ item.product.product_price }} (Qty: {{ item.quantity }})</span>
+        </li>>
       </ul>
       <button class="view-cart-btn" (click)="navigateToCartPage()" *ngIf="basketItems.length > 0">View Cart</button>
     </div>

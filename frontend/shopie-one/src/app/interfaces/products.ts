@@ -6,5 +6,4 @@ export interface ProductDetails {
   product_price: number;
   product_quantity: number;
   product_category: string;
-  price: number;
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Corrected import
 import { ProductDetails } from '../../interfaces/products';
-import { ProductService } from '../../services/product.service'; // Corrected import
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/local-storage-servic.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,22 +12,22 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
-  basketItems: ProductDetails[] = [];
-  isCartVisible: boolean = false;
+  basketItems: { product: ProductDetails; quantity: number }[] = [];
+  isCartVisible = false;
 
-  constructor(private productService: ProductService, private router: Router) {} // Corrected service
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadBasket();
   }
 
   loadBasket(): void {
-    this.basketItems = this.productService.getBasket();
+    this.basketItems = this.cartService.getItems();
   }
 
   toggleCart(): void {
     this.isCartVisible = !this.isCartVisible;
-    this.loadBasket(); // Refresh basket when toggled
+    this.loadBasket();
   }
 
   navigateToCartPage(): void {

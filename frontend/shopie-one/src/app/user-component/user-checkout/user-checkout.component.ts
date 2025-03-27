@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductDetails } from '../../interfaces/products'; // Assuming this is your product interface
 import { CheckoutDetails, OrderDetails } from '../../interfaces/order';
-import { ProductsService } from '../../services/products.service';
 import { OrderService } from '../../services/order.service';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/local-storage-servic.service';
 
 @Component({
   selector: 'app-user-checkout',
@@ -22,7 +22,7 @@ export class UserCheckoutComponent implements OnInit {
   showErrorMessage: boolean = false;
 
   constructor(
-    private productsService: ProductsService, // Use ProductsService instead of CartService
+    private cartService: CartService,
     private orderService: OrderService,
     private authService: AuthService,
     private router: Router
@@ -38,12 +38,7 @@ export class UserCheckoutComponent implements OnInit {
   }
 
   loadCartItems(): void {
-    const basketItems = this.productsService.getBasket();
-    // Map basket items to include quantity (default to 1 if not tracked)
-    this.items = basketItems.map(item => ({
-      product: item,
-      quantity: 1 // Adjust if you want to track quantity in local storage
-    }));
+    this.items = this.cartService.getItems();
   }
 
   confirmCheckout(): void {
@@ -62,25 +57,18 @@ export class UserCheckoutComponent implements OnInit {
   }
 
   removeItem(productId: string): void {
-    const updatedBasket = this.productsService.getBasket().filter(item => item.product_id !== productId);
-    localStorage.setItem('basket', JSON.stringify(updatedBasket));
+    this.cartService.removeItem(productId);
     this.loadCartItems();
   }
 
   increaseQuantity(productId: string): void {
-    const item = this.items.find(i => i.product.product_id === productId);
-    if (item) {
-      item.quantity++;
-      this.updateLocalStorage();
-    }
+    this.cartService.increaseQuantity(productId);
+    this.loadCartItems();
   }
 
   decreaseQuantity(productId: string): void {
-    const item = this.items.find(i => i.product.product_id === productId);
-    if (item && item.quantity > 1) {
-      item.quantity--;
-      this.updateLocalStorage();
-    }
+    this.cartService.decreaseQuantity(productId);
+    this.loadCartItems();
   }
 
   placeOrder(): void {
@@ -113,7 +101,7 @@ export class UserCheckoutComponent implements OnInit {
     this.orderService.placeOrder(order).subscribe(
       (response) => {
         console.log('Order placed successfully', response);
-        this.productsService.clearBasket();
+        this.cartService.clearCart();
         this.loadCartItems();
       },
       (error) => {
@@ -122,11 +110,4 @@ export class UserCheckoutComponent implements OnInit {
     );
   }
 
-  private updateLocalStorage(): void {
-    const updatedBasket = this.items.map(item => ({
-      ...item.product,
-      quantity: item.quantity // Add quantity to product if needed by backend
-    }));
-    localStorage.setItem('basket', JSON.stringify(updatedBasket));
-  }
 }

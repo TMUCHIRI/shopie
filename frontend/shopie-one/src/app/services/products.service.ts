@@ -17,20 +17,4 @@ export class ProductsService {
     );
   }
 
-  addToBasket(product: ProductDetails): void {
-    let basket: ProductDetails[] = JSON.parse(localStorage.getItem('basket') || '[]');
-    const existingProduct = basket.find(item => item.product_id === product.product_id);
-    if (!existingProduct) {
-      basket.push(product);
-      localStorage.setItem('basket', JSON.stringify(basket));
-    }
-  }
-
-  getBasket(): ProductDetails[] {
-    return JSON.parse(localStorage.getItem('basket') || '[]');
-  }
-
-  clearBasket(): void {
-    localStorage.removeItem('basket');
-  }
 }

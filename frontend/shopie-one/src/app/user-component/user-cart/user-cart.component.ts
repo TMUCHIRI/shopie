@@ -22,6 +22,7 @@ import { CartService } from '../../services/local-storage-servic.service';
 export class UserCartComponent {
   product: ProductDetails | null = null;
   productId: string | null = null;
+  quantity = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,16 +37,17 @@ export class UserCartComponent {
 
   addToCart() {
     if (this.product) {
-      this.cartService.addToCart({
-        product_id: this.product.product_id,
-        product_name: this.product.product_name,
-        quantity: 1,
-        price: this.product.product_price,
-      });
-      console.log('Product added to cart:', this.product);
-    } else {
-      console.error('No product selected to add to cart.');
+      const item = { ...this.product }; // Clone product without quantity
+      this.cartService.addToCart(item); // Let CartService set quantity
     }
+  }
+
+  increaseQuantity() {
+    this.quantity += 1;
+  }
+
+  decreaseQuantity() {
+    if (this.quantity > 1) this.quantity -= 1;
   }
 
   getOneProduct(product_id: string): void {

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
 import { CartComponent } from "../cart/cart.component";
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/local-storage-servic.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class LandingPageComponent implements OnInit {
   isSearchVisible: boolean = false; // Toggle for search input visibility
   searchQuery: string = ''; // Store the search input
 
-  constructor(private productService: ProductsService, private router: Router, private authService: AuthService) {}
+  constructor(private productService: ProductsService, private router: Router, private authService: AuthService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -86,7 +87,7 @@ export class LandingPageComponent implements OnInit {
   handleAddToBasket(productId: string): void {
     const product = this.products.find(p => p.product_id === productId);
     if (product) {
-      this.productService.addToBasket(product); // Use service to handle local storage
+      this.cartService.addToCart(product); // Use service to handle local storage
     }
     // if (!this.isLoggedIn) {
     //   // No redirect here; let user continue adding items

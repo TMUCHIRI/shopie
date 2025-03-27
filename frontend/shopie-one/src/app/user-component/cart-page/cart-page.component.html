@@ -1,14 +1,14 @@
 <div class="cart-page container">
-    <h2>Your Shopping Cart</h2>
-    <div *ngIf="basketItems.length === 0">Your cart is empty.</div>
-    <div class="cart-items" *ngIf="basketItems.length > 0">
-      <div class="cart-item" *ngFor="let item of basketItems">
-        <img [src]="item.product_image" [alt]="item.product_name" class="cart-item-image">
-        <div class="cart-item-details">
-          <h3>{{ item.product_name }}</h3>
-          <p>{{ item.product_price }}</p>
-        </div>
+  <h2>Your Shopping Cart</h2>
+  <div *ngIf="basketItems.length === 0">Your cart is empty.</div>
+  <div class="cart-items" *ngIf="basketItems.length > 0">
+    <div class="cart-item" *ngFor="let item of basketItems">
+      <img [src]="item.product.product_image" [alt]="item.product.product_name" class="cart-item-image">
+      <div class="cart-item-details">
+        <h3>{{ item.product.product_name }}</h3>
+        <p>{{ item.product.product_price }} (Qty: {{ item.quantity }})</p>
       </div>
-      <button class="checkout-btn" (click)="checkout()">Checkout</button>
     </div>
+    <button class="checkout-btn" (click)="checkout()">Checkout</button>
   </div>
+</div>
